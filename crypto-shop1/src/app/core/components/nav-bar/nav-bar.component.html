@@ -1,0 +1,16 @@
+<div [ngClass]="'app-nav-bar  '+ (secondary ? 'app-nav-bar-secondary': '')">
+  <ul ngbNav [(activeId)]="activeId" class="nav-pills app-nav">
+    <li *ngFor="let item of navItems; let i=index;" [ngbNavItem]="i">
+      <div ngbDropdown class="d-inline-block" #drop="ngbDropdown" *ngIf="item.items" (mouseover)='over(drop)'
+           (mouseout)='out(drop)'>
+        <a ngbDropdown ngbNavLink [id]="'dropdownBasic'+i" ngbDropdownToggle [tabindex]="i">{{item.title}}</a>
+        <div ngbDropdownMenu [attr.aria-label]="'dropdownBasic'+i">
+          <a ngbDropdownItem *ngFor="let dropDownItem of item.items; let dropDownIndex = index;"
+             [tabindex]="navItems.length+dropDownIndex" [routerLink]="dropDownItem.href"
+             (click)="$event.preventDefault()">{{dropDownItem.title}}</a>
+        </div>
+      </div>
+      <a *ngIf="!item.items" ngbNavLink [tabindex]="i" [routerLink]="item.href">{{item.title}}</a>
+    </li>
+  </ul>
+</div>

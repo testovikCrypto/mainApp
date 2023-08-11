@@ -1,0 +1,197 @@
+.wrapper {
+  width: 100%;
+  padding: 20px;
+  height: fit-content;
+  background-color: #171819 !important;
+  //display: flex;
+
+  &__item {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    padding: 15px;
+    width: 100%;
+    flex-direction: column;
+
+    //border-bottom: .5px solid #ccc;
+
+    &__title {
+      color: #8E96B0;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    &__text {
+      display: flex;
+
+      &__value {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      &__edit {
+        margin-left: 15px;
+        color: #8E96B0;
+        cursor: pointer;
+      }
+    }
+
+    &__confirmation {
+      display: flex;
+      margin-top: 15px;
+
+      &__Text {
+        cursor: pointer;
+        font-size: 14px;
+        color: #FFDA44;
+        text-decoration: underline;
+        font-weight: 800;
+
+        &:hover {
+          color: #f6b500;
+        }
+      }
+
+      &__Input {
+        background-color: transparent;
+        border: .5px solid #fff;
+        color: #fff;
+        border-radius: 6px 0 0 6px;
+        text-align: center;
+      }
+
+      &__Btn {
+        font-weight: 800;
+        color: #000;
+        border-radius: 0 6px 6px 0;
+        background-color: #FFDA44;
+      }
+    }
+
+    &__ResendCodeInText {
+      font-size: 12px;
+      color: #FFDA44;
+      text-decoration: underline;
+      font-weight: 800;
+    }
+
+    &__ResendCodeBtn {
+      cursor: pointer;
+      font-size: 12px;
+      color: #FFDA44;
+      text-decoration: underline;
+      font-weight: 800;
+    }
+
+    &__photo {
+      display: flex;
+
+      &__nameBlock {
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+
+        &__Name {
+          margin-bottom: 20px;
+          display: flex;
+          justify-content: flex-start;
+
+          &__Text {
+            margin-right: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #8E96B0;
+          }
+
+          &__Edit {
+            cursor: pointer;
+            color: #8E96B0;
+          }
+        }
+
+        &__Status {
+          display: flex;
+
+          &__Verified {
+            background-color: #FFDA44;
+            color: #000;
+            font-weight: 600;
+            padding: 6px 10px;
+            border-radius: 6px;
+          }
+
+          &__NotVerified {
+            background-color: #FD2929;
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 6px;
+          }
+
+          &__Verify {
+            cursor: pointer;
+            margin-left: 15px;
+            background-color: #FFDA44;
+            color: #000;
+            font-weight: 600;
+            padding: 6px 10px;
+            border-radius: 6px;
+          }
+
+          &__VerificationInProcess {
+            padding: 6px 10px;
+            border-radius: 6px;
+            color: #FFDA44;
+            border: 1px solid #FFDA44;
+          }
+        }
+      }
+
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #ccc;
+      }
+
+      &__profileStatusVerified {
+        height: fit-content;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 4px;
+        border-radius: 8px;
+        background-color: #d6ffc6;
+        color: #319600;
+      }
+
+      &__profileStatusNotVerified {
+        height: fit-content;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 4px;
+        border-radius: 8px;
+        background-color: #ffb9b9;
+        color: #ab2020;
+      }
+    }
+
+    &__field {
+      font-size: 16px;
+      font-weight: 500;
+
+    }
+
+    &__value {
+      font-size: 16px;
+      font-weight: 600;
+
+      &__btn {
+        padding: 8px 16px;
+        background-color: #205fec;
+        border-radius: 8px;
+        color: #FFF;
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@import "./styles/index.scss";
+
+@media (max-width: 991.98px) {
+  /*.tv-lightweight-charts {
+    width: 100%;
+    max-height: 500px;
+    overflow: hidden;
+  }*/
+}
+
+.tv-lightweight-charts {
+  /*height: 90%;*/
+  height: 90% !important;
+  //max-height: 700px;
+  overflow: hidden;
+}
+
+#header-toolbar-compare {
+  display: none !important;
+}
+
+.button-uO7HM85b {
+  display: none !important;
+}
+
+html.theme-dark .button-uO7HM85b:hover {
+  display: none !important;
+}

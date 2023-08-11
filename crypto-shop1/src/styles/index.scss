@@ -1,0 +1,12 @@
+
+
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+//@import "./bootstrap.scss";
+@import "node_modules/bootstrap-icons/font/bootstrap-icons.css";
+@import "./reset";
+@import "./custom.bootstrap.variables";
+@import "./layout";
+@import "slider";
+@import "form";
+@import "form-login";
+@import url('keen-slider/keen-slider.css');

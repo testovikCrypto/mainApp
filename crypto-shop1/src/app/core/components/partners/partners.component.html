@@ -1,0 +1,9 @@
+<div class="app-partners">
+  <div #sliderRef class="keen-slider">
+    <div *ngFor="let card of data" class="keen-slider__slide">
+      <picture class="app-partners-card">
+        <img [src]="card.image"/>
+      </picture>
+    </div>
+  </div>
+</div>

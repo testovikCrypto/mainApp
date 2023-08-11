@@ -1,0 +1,27 @@
+<div class="toolbar">
+  <select
+    [ngStyle]="bMobile ? {backgroundColor: '#171819',
+    color: '#FFDA44',
+    textAlign: 'center',
+    borderRadius: '8px',
+    paddingLeft: '30px',
+    paddingRight: '30px',
+    fontSize: '18px',
+    wontWeight: '600',
+    border: '0'}
+     : {backgroundColor: '#1E1E1E',
+    color: '#fff',
+    textAlign: 'center',
+    borderRadius: '0 0 8px 0',
+    border: '0'}"
+    style=""
+    class="form-select"
+    (ngModelChange)="onChooseIndicator($event)"
+    [(ngModel)]="sName_Indicator_Active">
+    <option value="clear">Indicators</option>
+    <option value="SMA">SMA</option>
+    <option value="EMA">EMA</option>
+    <option value="BB">BB</option>
+    <option value="IC">IC</option>
+  </select>
+</div>

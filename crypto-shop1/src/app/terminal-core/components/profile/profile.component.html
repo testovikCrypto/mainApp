@@ -1,0 +1,134 @@
+<div class="wrapper" *ngIf="oUser">
+  <div class="wrapper__item">
+    <div class="wrapper__item__photo">
+      <label for="fileInput">
+        <img [src]="getUserPhoto()" style="cursor: pointer" alt="userIcon">
+      </label>
+      <input hidden
+             id="fileInput"
+             type="file"
+             (change)="onChangeProfilePhoto($event)"/>
+
+      <div class="wrapper__item__photo__nameBlock">
+        <div class="wrapper__item__photo__nameBlock__Name">
+          <div class="wrapper__item__photo__nameBlock__Name__Text">{{oUser.sName}} {{oUser.sSurname}}</div>
+          <div class="wrapper__item__photo__nameBlock__Name__Edit"><i class="bi bi-pencil-fill"></i></div>
+        </div>
+        <div class="wrapper__item__photo__nameBlock__Status">
+          <div class="wrapper__item__photo__nameBlock__Status__Verified"
+               *ngIf="oUser.sVerificationConfirmed === 'true'">Verified
+          </div>
+          <div class="wrapper__item__photo__nameBlock__Status__NotVerified"
+               *ngIf="oUser.sVerificationConfirmed === 'false'">Not verified
+          </div>
+          <div class="wrapper__item__photo__nameBlock__Status__Verify"
+               (click)="onStartVerification()"
+               *ngIf="oUser.sVerificationConfirmed === 'false'">Start verification
+          </div>
+          <div *ngIf="oUser.sVerificationConfirmed === 'pending'"
+               class="wrapper__item__photo__nameBlock__Status__VerificationInProcess">Verification is in process
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="wrapper__item__photo__profileStatusVerified"
+           *ngIf="oUser && oUser.sVerificationConfirmed === 'true'">
+        <i class="bi bi-check-lg"></i> Verified
+      </div>
+      <div class="wrapper__item__photo__profileStatusNotVerified"
+           *ngIf="oUser && oUser.sVerificationConfirmed !== 'true'">
+        <i class="bi bi-x-lg"></i> Not verified
+      </div>-->
+    </div>
+  </div>
+  <div class="wrapper__item">
+    <div class="wrapper__item__title">Email</div>
+    <div class="wrapper__item__text">
+      <div class="wrapper__item__text__value">{{oUser.sEmail}}</div>
+      <div class="wrapper__item__text__edit"><i class="bi bi-pencil-fill"></i></div>
+    </div>
+    <div class="wrapper__item__confirmation">
+      <div class="wrapper__item__confirmation__Text"
+           *ngIf="!bConfirmationCodeWasSent"
+           (click)="onSendConfirmationCode()">
+        Send confirmation code
+      </div>
+      <input type="text"
+             [(ngModel)]="sConfirmationEmailCode"
+             class="wrapper__item__confirmation__Input"
+             maxlength="6"
+             *ngIf="bConfirmationCodeWasSent">
+      <button type="submit"
+              [ngStyle]="sConfirmationEmailCode.length != 6 ? {opacity: .6} : {}"
+              [disabled]="sConfirmationEmailCode.length != 6"
+              class="btn-sm wrapper__item__confirmation__Btn"
+              *ngIf="bConfirmationCodeWasSent">Confirm</button>
+    </div>
+    <div class="wrapper__item__ResendCodeInText" *ngIf="bConfirmationCodeWasSent && !bAvailableResendCode">
+      Send code again in: {{countdown}}
+    </div>
+    <div class="wrapper__item__ResendCodeBtn" (click)="onSendConfirmationCode()" *ngIf="bConfirmationCodeWasSent && bAvailableResendCode">
+      Send code
+    </div>
+  </div>
+  <div class="wrapper__item">
+    <div class="wrapper__item__title">Phone</div>
+    <div class="wrapper__item__text">
+      <div class="wrapper__item__text__value">{{oUser.sNumber}}</div>
+      <div class="wrapper__item__text__edit"><i class="bi bi-pencil-fill"></i></div>
+    </div>
+  </div>
+  <div class="wrapper__item d-sm-none">
+    <div class="wrapper__item__text">
+      <!--<div class="sidebar-item d-none d-sm-block">
+        <div style=" color: #FD2929" class="sidebar-item__title" >
+            <span style="color: #FD2929;"
+                  class="bi bi-box-arrow-left"></span>
+          <span style="margin-left: 5px; font-size: 20px;">Exit</span>
+        </div>
+      </div>-->
+      <div class="wrapper__item__text__value" (click)="onSignOut()">
+         <span style="color: #FD2929;"
+               class="bi bi-box-arrow-left"></span>
+        <span style="margin-left: 8px; color: #FD2929; font-size: 16px;">Exit</span>
+      </div>
+    </div>
+  </div>
+  <!--<div class="wrapper__item">
+    <div class="wrapper__item__field">Name</div>
+    <div class="wrapper__item__value">{{oUser.sName}}</div>
+  </div>
+  <div class="wrapper__item">
+    <div class="wrapper__item__field">Surname</div>
+    <div class="wrapper__item__value">{{oUser.sSurname}}</div>
+  </div>
+  <div class="wrapper__item">
+    <div class="wrapper__item__field">Email</div>
+    <div class="wrapper__item__value">{{oUser.sEmail}}</div>
+  </div>
+  <div class="wrapper__item">
+    <div class="wrapper__item__field">Phone number</div>
+    <div class="wrapper__item__value">{{oUser.sNumber}}</div>
+  </div>
+  <div class="wrapper__item">
+    <div class="wrapper__item__field">Verification</div>
+    <div class="wrapper__item__value" *ngIf="this.oUser">
+      <div (click)="onStartVerification()"
+           style="cursor: pointer"
+           *ngIf="this.oUser.sVerificationConfirmed === 'false'"
+           class="wrapper__item__value__btn">Start
+      </div>
+      <div *ngIf="this.oUser.sVerificationConfirmed === 'pending'"
+           class="wrapper__item__value__btn"
+           style="opacity: 0.3; cursor: not-allowed">Verification in process...
+      </div>
+      <div *ngIf="this.oUser.sVerificationConfirmed === 'true'"
+           class="wrapper__item__value__btn"
+           style="background-color: #d6ffc6; color: #319600; cursor: default">Verification completed
+      </div>
+    </div>
+  </div>
+  <div class="wrapper__item" (click)="onSignOut()" style="cursor: pointer">
+    <div class="wrapper__item__field"><i class="bi bi-box-arrow-left"></i> Sign Out</div>
+  </div>-->
+</div>

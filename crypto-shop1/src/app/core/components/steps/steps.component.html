@@ -1,0 +1,42 @@
+<div class="app-steps">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 d-none d-lg-block">
+        <div class="app-steps-bg">
+          <picture>
+            <img [src]="image2"/>
+          </picture>
+        </div>
+      </div>
+      <div class="col-xxl-7 offset-xxl-1 col-lg-7">
+        <div class="app-steps-caption">
+          <div class="app-steps-title">
+            THE WAY TO TRADING{{" "}}-{{" "}}
+            <span class="text-primary" style="color: #FFDA44 !important;">ONLY 3 STEPS</span>
+                <div  *ngFor="let item of data"class="app-steps-card">
+                  <div class="app-steps-card-item__left">
+                    <div class="app-steps-card-counter">
+                      {{item.number}}
+                    </div>
+                  </div>
+                  <div class="app-steps-card-item__right">
+                    <div class="app-steps-card-item-title">
+                      <span class="text-primary" style="color: #FFDA44 !important;">{{item.primaryText}}</span>
+                      {{item.text}}
+                    </div>
+                    <div class="app-steps-card-item-description">
+                      {{item.description}}
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <div class="text-center pt-5">
+            <a class="btn"
+               style="background-color: #FFDA44; font-weight: 600; color: #000;"
+               (click)="onClickStartTrading()"> Start trading </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div >

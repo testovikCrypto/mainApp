@@ -1,0 +1,7 @@
+@import 'intl-tel-input/build/css/intlTelInput.css';
+
+.form-check-input:checked[type=checkbox] {
+  background-color: #FFDA44;
+  border-color: #FFDA44;
+  background-image: url("/assets/img/checkIcon.svg");
+}

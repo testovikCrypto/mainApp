@@ -1,0 +1,105 @@
+<app-header></app-header>
+<app-header-spacer/>
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 order-last order-lg-first auth-sidebar-wrapper">
+        <app-auth-side-bar/>
+      </div>
+      <div class="col-xxl-6 offset-xl-1 offset-lg-1 col-xl-7 col-lg-6">
+        <div class="auth-body">
+          <div>
+            <div class="auth-header">
+              <div class="auth-title">Login</div>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit_LoginForm()">
+              <div class="login-info"> Welcome back! Log in with your email address and password
+              </div>
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-group is--required has--content form-group--default form-group--light-theme"><label
+                    for="email" style="color: #fff;">Email:</label>
+                    <div style="border: 0" class="form-control">
+                      <input id="email"
+                             name="email"
+                             formControlName="email"
+                             style="color: #fff;
+                                                             background-color: #171819;
+                                                              outline: none;
+                                                               border: 1px solid #fff;
+                                                             padding: 8px;"
+                             placeholder="Enter your email address"
+                             required="required" type="email"
+                             maxlength="999999999"><!----></div>
+                    <div class="form-error" *ngIf="formControls['email'].errors?.['required']
+                     && formControls['email'].touched">
+                      Email is required.
+                    </div>
+                    <div class="form-error" *ngIf="formControls['email'].errors?.['email']
+                     && formControls['email'].touched">
+                      Wrong email pattern.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div
+                    class="form-group is--required has--content form-group--default form-group--light-theme"><label
+                    for="password" style="color: #fff;">Password:</label>
+                    <div style="border: 0;"
+                         class="form-control">
+                      <input id="password"
+                             name="password"
+                             style="color: #fff;
+                                                             background-color: #171819;
+                                                              outline: none;
+                                                               border: 1px solid #fff;
+                                                             padding: 8px;"
+                             formControlName="password"
+                             placeholder="Enter your password"
+                             required="required"
+                             [type]="bShowPassword ? 'text' : 'password'"
+                             maxlength="999999999">
+                      <div class="form-password">
+                        <i style="cursor: pointer"
+                           (click)="bShowPassword = !bShowPassword"
+                           [ngClass]="bShowPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'"
+                           class="bi"></i>
+                      </div>
+                    </div>
+                    <div class="form-error" *ngIf="bErrorLogin">Wrong email/password</div>
+                  </div>
+                </div>
+              </div>
+              <div class="login-caption">
+                <div class="row">
+                  <div class="col-xl-6">
+                    <a [routerLink]="'/auth/forgot'" style="color: #fff; background-color: #1E1E1E;" class="btn btn-lg"
+                       type="button"> Forgot your
+                      password?
+                    </a>
+                  </div>
+                  <div class="col-xl-6">
+                    <button type="submit"
+                            class="btn btn-lg"
+                            style="color: #000; background-color: #FFDA44;">
+                      <span *ngIf="!bLoginInProcess">
+                        Login
+                      </span>
+                      <span *ngIf="bLoginInProcess">
+                        <div class="spinner-border" role="status">
+                          <span class="sr-only"></span>
+                        </div>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer/>

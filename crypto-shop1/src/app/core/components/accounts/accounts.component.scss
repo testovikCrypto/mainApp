@@ -1,0 +1,112 @@
+.app-accounts {
+  background: #171819;
+  padding-top: 80px;
+  padding-bottom: 130px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  @media (max-width: 1599.98px) {
+    padding-bottom: 55px;
+  }
+  @media (max-width: 1199.98px) {
+    padding-bottom: 50px;
+  }
+  @media (max-width: 991.98px) {
+    padding-bottom: 45px;
+  }
+  @media (max-width: 767.98px) {
+    padding-bottom: 40px;
+    text-align: center;
+  }
+  @media (max-width: 575.98px) {
+    padding-bottom: 35px;
+  }
+
+  .title {
+    font-weight: 700;
+    font-size: 18px;
+    color: #FFF;
+    padding-bottom: 60px;
+  }
+
+  &-bg {
+    position: relative;
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -1000px;
+      width: 10000px;
+      height: 10000px;
+      background-color: #FFDA44;
+      z-index: -1;
+    }
+  }
+  &-card {
+    background: #1E1E1E;
+    padding: 40px 60px 50px;
+    -webkit-box-shadow: 0 8px 20px rgba(17, 17, 32, .12);
+    box-shadow: 0 8px 20px rgba(17, 17, 32, .12);
+    margin-bottom: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    text-align: start;
+
+    @media (max-width: 1599.98px) {
+      padding: 35px 30px 45px;
+    }
+
+    @media (max-width: 767.98px) {
+      padding: 30px 25px 35px;
+    }
+
+    .card-title {
+      color: #FFDA44;
+      font-weight: 700;
+      font-size: 24px;
+      padding-bottom: 10px;
+
+      &-selected {
+        color: #FFDA44;
+      }
+    }
+
+    .card-description {
+      color: #fff;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #c7cbd2;
+      margin-bottom: 15px;
+
+      @media (max-width: 1599.98px)  {
+        font-size: 13px;
+      }
+    }
+
+    .card-info {
+      padding-bottom: 30px;
+      line-height: 200%;
+      color: #fff;
+      font-weight: 200;
+
+      @media (max-width: 1599.98px) {
+        font-size: 14px;
+      }
+
+      &-active {
+        color: #FFF;
+        font-weight: 700;
+      }
+
+      &-extra {
+        color: #FFDA44;
+      }
+    }
+  }
+}

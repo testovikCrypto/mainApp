@@ -1,0 +1,32 @@
+<div class="app-accounts">
+  <div class="container">
+    <div class="row">
+      <div class="offset-7 col-5 d-none d-md-block">
+        <div class="app-accounts-bg">
+        </div>
+      </div>
+
+      <div class="title">INFORMATION ABOUT ACCOUNTS</div>
+      <div *ngFor="let item of data" class="col-xl-4">
+        <div class="app-accounts-card">
+          <div [class]="'card-title ' + (item.selectedTitle ? 'card-title-selected': '')">
+            {{item.title}}
+          </div>
+          <div class="card-description">
+            {{item.description}}
+          </div>
+          <ul class="card-info">
+
+            <li *ngFor="let menuItem of item.menuItems" [class]="!menuItem.disabled ? 'card-info-active' : ''">
+              {{menuItem.text}}
+              <span class="card-info-extra">{{menuItem?.extraText || ""}}</span>
+            </li>
+          </ul>
+          <a style="background-color: #FFDA44; color: #000; font-weight: 600;"
+             class="btn"
+             (click)="onClickStartTrading()">Open an account</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

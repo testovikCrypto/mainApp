@@ -1,0 +1,34 @@
+.app-worth {
+  background: #1E1E1E;
+  padding-top: 80px;
+  padding-bottom: 120px;
+
+  @media (max-width: 1599.98px) {
+    padding-top: 70px;
+    padding-bottom: 100px;
+  }
+
+  .title {
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+    padding-bottom: 40px;
+  }
+
+  .item {
+    &-title {
+      font-weight: 700;
+      font-size: 30px;
+      color: #FFDA44;
+      padding-bottom: 20px;
+
+      @media (max-width: 1599.98px) {
+        font-size: 28px;
+      }
+    }
+
+    &-description {
+      color: #fff;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+<div class="openWrapper">
+  <div class="openWrapper__Text">Open Deals</div>
+  <div class="openWrapper__tableContainer">
+  <table style="width: 100%; overflow-y: scroll" *ngIf="aActiveTrades && aActiveTrades.length; else noActiveTrades">
+    <thead>
+    <tr>
+      <td>&nbsp;</td>
+      <td>Pair</td>
+      <td>Amount</td>
+      <td>Price</td>
+      <td>Leverage</td>
+      <td>Expected PNL</td>
+      <td>Take Profit</td>
+      <td>Stop Loss</td>
+      <td>&nbsp;</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let oActiveTrade of aActiveTrades; let nIndex = index">
+      <td>
+        <span [ngStyle]="oActiveTrade.tradeType === 'buy' ? {color: '#0ECB81'} : {color: '#FD2929'}">
+          {{oActiveTrade.tradeType === 'buy' ? 'Buy' : 'Sell'}}
+        </span>
+      </td>
+      <td>{{oActiveTrade.symbol}}</td>
+      <td>{{oActiveTrade.amount}}$</td>
+      <td>{{oActiveTrade.price}}</td>
+      <td>{{oActiveTrade.leverage}}x</td>
+      <td>
+        <span [ngStyle]="{color: getPNLColor(oActiveTrade.sDealResultPNL)}">{{oActiveTrade.sDealResultPNL}}</span>
+      </td>
+      <td>{{oActiveTrade.takeProfit}}</td>
+      <td>{{oActiveTrade.stopLoss}}</td>
+      <td>
+        <button class="openWrapper__CloseBtn" (click)="onCloseTrade(oActiveTrade)">
+          <span *ngIf="oActiveTrade.bisInAction">
+            <div class="spinner-border" role="status">
+              <span class="sr-only"></span>
+            </div>
+          </span>
+          <span *ngIf="!oActiveTrade.bisInAction">Close</span>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <ng-template #noActiveTrades>
+    <div class="openWrapper__noActiveTrades">No active deals...</div>
+  </ng-template>
+  <!--<div class="openWrapper__Item" >
+    <app-user [oUser]="oUser" [nIndex]="nIndex"></app-user>
+  </div>-->
+</div>

@@ -1,0 +1,20 @@
+<div class="app-section_sm app-section_with-divider" style="background-color: #171819">
+  <div class="container">
+    <div class="row gy-5 gy-lg-0 justify-content-lg-between">
+      <div class="col-lg-6 order-lg-2">
+        <picture class="app-section-img">
+          <img [src]="data.image" alt="">
+        </picture>
+      </div>
+      <div class="col-lg-6 order-lg-1">
+        <div class="app-section-caption">
+          <div class="app-section-title" style="color: #fff;">{{data.title}}</div>
+          <div class="app-section-description">{{data.description}}
+          </div>
+          <a (click)="onClickStartTrading()"
+             class="btn"
+             style="color: #000; font-weight: 600; background-color: #FFDA44;"> Start trading </a></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="app-introduction">
+  <img [src]="data.image" />
+  <div class="container container-lg container-fluid">
+    <div class="app-introduction-container">
+      <div class="app-introduction-header">{{data.title}}</div>
+      <div class="app-introduction-description">{{data.description}}</div>
+      <div class="app-introduction-button">
+        <a (click)="onClickStartTrading()"
+           class="btn"
+           style="color: #000; font-weight: 600; background-color: #FFDA44;">Start trading</a>
+      </div>
+    </div>
+  </div>
+</div>

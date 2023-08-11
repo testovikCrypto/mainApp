@@ -1,0 +1,52 @@
+<div [ngClass]="'app-header d-flex align-items-center ' + (secondary ? 'app-header-secondary' : '')">
+  <div class="container d-flex align-items-center">
+    <div class="col mr-3 sm-4 col-md-3">
+      <app-logo [secondary]="secondary" [href]="'/'"/>
+    </div>
+    <div class="col d-none d-xl-block col-md-6">
+      <app-nav-bar [secondary]="secondary"></app-nav-bar>
+    </div>
+
+    <div class="app-nav col-3 d-flex justify-content-end col-md-3" *ngIf="!isLoggedIn()">
+      <a class="btn btn-sm app-btn-link btn-link d-sm-none d-md-none d-xl-none d-sm-flex">
+        <div class="collapse"
+             id="navbarToggleExternalContent"
+             style="position: absolute;top: 0;width: 100%;left: 0;">
+          <div class="bg-dark p-4">
+            <div class="col mr-3 sm-4 col-md-3">
+              <app-logo [secondary]="secondary" [href]="'/'"/>
+            </div>
+<!--            <h5 class="text-white h4">Collapsed content</h5>-->
+<!--            <span class="text-muted">Toggleable via the navbar brand.</span>-->
+            <div class="wrapper">
+              <!-- (click)="onDropdownMenuClick('conditions')"-->
+              <div class="wrapper__Item" (click)="onDropdownMenuClick(oHeaderItem)" *ngFor="let oHeaderItem of aHeaderItems">
+                {{oHeaderItem.title}}
+                <ul *ngIf="oHeaderItem.items && oHeaderItem.items.length">
+                  <li (click)="onDropdownMenuClick(item, $event)" *ngFor="let item of oHeaderItem.items">{{item.title}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <nav class="navbar navbar-light">
+          <div class="container-fluid">
+            <button class="navbar-toggler"
+                    type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarToggleExternalContent"
+                    aria-controls="navbarToggleExternalContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#fff" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+              </svg>
+            </button>
+          </div>
+        </nav>
+      </a>
+      <a class="btn btn-sm app-btn-link btn-link d-none d-sm-flex" [routerLink]="'/auth/login'"
+         style="color: rgba(255, 218, 68, 1)">Login</a>
+      <a style="background-color: rgba(255, 218, 68, 1);" class="btn btn-sm d-none d-sm-flex" (click)="onClickStartTrading()">Register</a>
+    </div>
+  </div>
+</div>

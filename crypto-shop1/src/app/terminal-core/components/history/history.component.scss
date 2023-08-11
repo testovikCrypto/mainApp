@@ -1,0 +1,41 @@
+table, th, td {
+  border-bottom: 1px solid #1E1E1E;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 8px;
+}
+
+table {
+  width: 100%;
+  white-space: nowrap;
+}
+
+thead {
+  color: #fff;
+}
+
+.historyWrapper {
+  padding: 40px 20px;
+  background-color: #171819 !important;
+  overflow-y: scroll !important;
+  //height: 115% !important;
+
+  &__tableContainer {
+    overflow-x: auto;
+  }
+
+  &__Text {
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 24px;
+    color: #fff;
+  }
+
+  &__noTradesInHistory {
+    font-size: 18px;
+    color: #cccccc;
+    font-weight: 800;
+  }
+}

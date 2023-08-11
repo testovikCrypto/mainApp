@@ -1,0 +1,125 @@
+.app-nav-bar {
+  .app-nav {
+    display: flex;
+  }
+
+  /*.nav-link.active {
+    border: none;
+  }*/
+
+  .nav-item .nav-link {
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    position: relative;
+    font-weight: 700;
+
+    &:hover {
+      background: #1E1E1E;
+      color: #FFDA44;
+    }
+  }
+
+/*  .nav-item .nav-link.active {
+    color: var(--bs-primary);
+  }*/
+
+
+  .tab-content {
+    border-top: transparent;
+    padding: 15px;
+  }
+
+  .tab-content .tab-pane {
+    color: #FFDA44;
+    min-height: 200px;
+    height: auto;
+  }
+
+  .dropdown {
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    & > .nav-link {
+      transition: none;
+    }
+    &:hover {
+        background: #1E1E1E;
+    }
+  }
+
+  .dropdown-menu {
+    border: none;
+    padding: 0 20px 10px;
+    border-top-left-radius: 0;
+    //border-top-right-radius: 0;
+    &:hover {
+      background-color: #1E1E1E;
+    }
+
+    .dropdown-toggle {
+      &:after {
+        content: "";
+        font-family: icons!important;
+        speak: never;
+        font-style: normal;
+        font-weight: 400;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    }
+  }
+
+  .dropdown .dropdown-menu.show {
+    top: -3px !important;
+  }
+  .dropdown-item {
+    position: relative;
+    &:not(:last-child) {
+      border-bottom: 1px solid #d2d9e3;
+    }
+
+    &:hover, &:focus {
+      color: #FFDA44;
+      background-color: transparent;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      left: 0;
+      top: 50%;
+      background: #FFDA44;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+  }
+
+}
+
+
+.app-nav-bar-secondary {
+  .nav-item .nav-link {;
+    color: var(--bs-black);
+
+    &:hover {
+      background: var(--bs-white);
+    }
+  }
+
+  .dropdown {
+    &:hover {
+      background: white;
+    }
+  }
+
+
+
+}

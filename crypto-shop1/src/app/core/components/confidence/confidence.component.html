@@ -1,0 +1,43 @@
+<div class="app-confidence" style="background-color: #000">
+  <div class="container">
+    <div class="app-confidence-block">
+      <div class="app-confidence-title">
+        Why trust our company?
+      </div>
+
+      <!--      <ConfidenceCarousele cards={cards} index={index} width={cardWidth}-->
+      <!--                           containerRef={carouseleRef}></ConfidenceCarousele>-->
+
+      <div class="keen-slider keen-slider--vertical" #sliderRef>
+        <div class="keen-slider__slide" *ngFor="let item of data">
+          <div class="app-confidence-carousele">
+            <div class="app-confidence-carousele-card">
+              <div class="app-confidence-carousele-card-count">{{item.count}}</div>
+              <div class="app-confidence-carousele-card-title">{{item.title}}</div>
+              <div class="app-confidence-carousele-card-description">{{item.description}}</div>
+            </div>
+          </div >
+        </div>
+      </div>
+
+      <div>
+        <div class="app-confidence-pagination">
+            <span *ngFor="let item of paginationHelper; let i = index;"
+                  [ngStyle]="i <= currentSlideIndex ? {backgroundColor: '#FFDA44'} : {}"
+                  [class]="'bullet ' + (i <= currentSlideIndex  ? 'bullet-active' : '')"
+                  (click)="setIndex(i)"></span>
+        </div>
+      </div>
+
+      <div class="app-confidence-navigation d-none d-md-block">
+        <div class="app-confidence-navigation__prev" (click)=" slider?.prev()">
+          <i class="bi bi-chevron-left"></i>
+        </div>
+        <div class="app-confidence-navigation__next" (click)="  slider?.next()">
+          <i class="bi bi-chevron-right"></i>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

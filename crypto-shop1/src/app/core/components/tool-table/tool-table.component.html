@@ -1,0 +1,10 @@
+<div style="background-color: #171819;" [class]=" 'app-section_sm-1 ' + (secondary ? 'app-gray-bg' : '')">
+  <div class="container ">
+    <div class="app-section-title" style="color: #fff;">{{data.title}}</div>
+    <div class="app-tradingview-widget-container" style="width: 100%; height: 500px;">
+      <iframe scrolling="no" allowtransparency="true" frameborder="0"
+              [src]="data.iframeUrl | safeUrl"
+              style="box-sizing: border-box; display: block; height: 500px; width: 100%;"></iframe>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,133 @@
+.app-nav-bar {
+  .app-nav {
+    display: flex;
+  }
+
+  .nav-link.active {
+    border: none;
+  }
+
+  .nav-item .nav-link {
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    position: relative;
+    font-weight: 700;
+
+    &:hover {
+      background: #FFDA44;
+      color: #000;
+    }
+  }
+
+  .nav-item .nav-link.active {
+    color: #1E1E1E;
+  }
+
+
+  .tab-content {
+    border-top: transparent;
+    padding: 15px;
+  }
+
+  .tab-content .tab-pane {
+    color: #1E1E1E;
+    min-height: 200px;
+    height: auto;
+  }
+
+  .dropdown {
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    & > .nav-link {
+      transition: none;
+    }
+    &:hover {
+        background: #FFDA44;
+      -webkit-box-shadow: 0 10px 50px rgba(0,0,0,.1);
+      box-shadow: 0 10px 50px rgba(0,0,0,.1);
+    }
+  }
+
+  .dropdown-menu {
+
+    border: none;
+    padding: 0 20px 10px;
+    border-top-left-radius: 0;
+    //border-top-right-radius: 0;
+
+    -webkit-box-shadow: 0 10px 50px rgba(0,0,0,.1);
+    box-shadow: 0 10px 50px rgba(0,0,0,.1);
+    &:hover {
+      background-color: #FFDA44;
+    }
+
+    .dropdown-toggle {
+      &:after {
+        content: "";
+        font-family: icons!important;
+        speak: never;
+        font-style: normal;
+        font-weight: 400;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    }
+  }
+
+  .dropdown .dropdown-menu.show {
+    top: -3px !important;
+    background-color: #171819;
+  }
+  .dropdown-item {
+    color: #fff;
+    position: relative;
+    &:not(:last-child) {
+      //border-bottom: 1px solid #d2d9e3;
+    }
+
+    &:hover, &:focus {
+      color: #000;
+      border-radius: 8px;
+      background-color: #FFDA44;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      left: -10px;
+      top: 50%;
+      background: white;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+  }
+
+}
+
+
+.app-nav-bar-secondary {
+  .nav-item .nav-link {;
+    color: white;
+
+    &:hover {
+      background: #FFDA44;
+      color: #1E1E1E;
+    }
+  }
+
+  .dropdown {
+    &:hover {
+      background: #1E1E1E;
+    }
+  }
+}

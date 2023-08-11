@@ -1,0 +1,171 @@
+<app-header></app-header>
+<app-header-spacer/>
+<div class="app-contact">
+  <!--  <iframe url={mapUrl} width={"100%"} height={"360px"} allowFullScreen="true" loading="lazy"-->
+  <!--          referrerPolicy="no-referrer-when-downgrade" styles={{border: 0}}/>-->
+  <iframe [src]="src | safeUrl" width="100%" height="360" allowfullscreen="allowfullscreen" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" style="border: 0px;"></iframe>
+  <div class="app-contact-form">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="app-contact-block">
+            <div class="app-contact-title" style="color: #fff">
+              Support for <span class="text-primary" style="color: #FFDA44 !important;">users</span>
+            </div>
+            <div class="app-contact-info" style="color: #Fff;">
+              Request a call and we'll get back to you as soon as possible
+            </div>
+            <div class="app-contact-items">
+              <div class="app-contact-item">
+                <a href="mailto:support@startcryptotrade.com" style="color: #fff;">
+                  <i class="bi bi-mailbox"></i>
+                  support@startcryptotrade.com
+                </a>
+              </div>
+              <div class="app-contact-item">
+                  <span style="color: #fff;">
+                    <i class="bi bi-pin-map-fill"></i>
+                    30 St Mary Axe, London UK
+                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7" style="padding: 0;">
+          <div class="app-contact-block is--form">
+            <div class="app-contact-title">Submit Application</div>
+            <form [formGroup]="profileForm"
+                  (ngSubmit)="onClickContactUs()">
+              <div class="row">
+                <div class="col-xl-6">
+                  <div
+                    style="color: #000;"
+                    class="form-group is--required form-group--default form-group--dark-theme"><label
+                    for="name">Name:</label>
+                    <div class="form-control-wrapper">
+                      <input id="name"
+                             style="padding: 8px;
+                                    background-color: transparent;
+                                    border: 1px solid #000;
+                                    color: #000;"
+                             name="name"
+                             class="form-control"
+                             [disabled]="bRequestCallInProcess"
+                             formControlName="name"
+                             placeholder="Enter your name"
+                             required="true" type="text"
+                             maxLength="999999999"/>
+                    </div>
+                    <div class="form-error" *ngIf="profileForm['controls']['name'].errors?.['required']
+                     && formControls['name'].touched">
+                      Name is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div
+                    style="color: #000;"
+                    class="form-group is--required form-group--default form-group--light-theme"><label
+                    for="surname">Surname:</label>
+                    <div class="form-control-wrapper">
+                      <input id="surname"
+                             style="padding: 8px;
+                                    background-color: transparent;
+                                    border: 1px solid #000;
+                                    color: #000;"
+                             name="surname"
+                             [disabled]="bRequestCallInProcess"
+                             formControlName="surname"
+                             class="form-control"
+                             placeholder="Enter your surname"
+                             required="true" type="text"
+                             maxLength="999999999"/></div>
+                    <div class="form-error" *ngIf="profileForm['controls']['surname'].errors?.['required']
+                     && formControls['surname'].touched">
+                      Surname is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div
+                    style="color: #000;"
+                    class="form-group is--required form-group--default form-group--light-theme"><label
+                    for="phone">Phone:</label>
+                    <div class="form-control-wrapper">
+                      <input id="phone"
+                             style="padding: 8px;
+                                    background-color: transparent;
+                                    border: 1px solid #000;
+                                    color: #000;"
+                             class="form-control"
+                             name="phone"
+                             [disabled]="bRequestCallInProcess"
+                             formControlName="phone"
+                             placeholder="Enter your phone number"
+                             required="true" type="text"
+                             maxLength="999999999"/>
+                    </div>
+                    <div class="form-error" *ngIf="profileForm['controls']['phone'].errors?.['required']
+                     && formControls['phone'].touched">
+                      Phone is required.
+                    </div>
+                    <div class="form-error" *ngIf="profileForm['controls']['phone'].errors?.['pattern']
+                     && formControls['phone'].touched">
+                      Wrong phone pattern (example: +9112345667).
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div
+                    style="color: #000;"
+                    class="form-group is--required form-group--default form-group--light-theme"><label
+                    for="email">Email:</label>
+                    <div class="form-control-wrapper">
+                      <input id="email"
+                             style="padding: 8px;
+                                    background-color: transparent;
+                                    border: 1px solid #000;
+                                    color: #000;"
+                             formControlName="email"
+                             [disabled]="bRequestCallInProcess"
+                             name="email"
+                             class="form-control"
+                             placeholder="Enter your email address"
+                             required="true" type="email"
+                             maxLength="999999999"/></div>
+                    <div class="form-error" *ngIf="profileForm['controls']['email'].errors?.['required']
+                     && formControls['email'].touched">
+                      Email is required.
+                    </div>
+                    <div class="form-error" *ngIf="formControls['email'].errors?.['email']
+                     && formControls['email'].touched">
+                      Wrong email pattern.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xl-6">
+                  <button type="submit"
+                          class="btn"
+                          style="font-weight: 600; color: #FFDA44; background-color: #171819;">
+                    <span *ngIf="!bRequestCallInProcess">
+                    Request a call
+                      </span>
+                    <span *ngIf="bRequestCallInProcess">
+                      <div class="spinner-border" role="status">
+              <span class="sr-only"></span>
+            </div>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer/>

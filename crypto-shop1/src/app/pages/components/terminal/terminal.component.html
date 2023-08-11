@@ -1,0 +1,541 @@
+<div class="terminal-layout page-terminalindex">
+  <terminal-header [oUserInfo]="oUserInfo"></terminal-header>
+<!--  <div class="terminal-layout__symbols d-lg-none" *ngIf="getsActiveMenu() === 'chart'">-->
+    <!--<div class="header-symbols">
+      <div class="header-symbols-wrapper">
+        <div class="header-symbols__symbol-wrapper">
+          &lt;!&ndash;                          [disabled]="isAnyActiveTrades()"&ndash;&gt;
+          &lt;!&ndash;<button type="button"
+                  style="background-color: #FFBD0D; width: 30px; color: #000;"
+                  class="btn btn-sm" data-bs-toggle="modal"
+                  data-bs-target="#ReplenishModal"><span
+            class="bi bi-database-down"></span><span
+            class="d-none d-md-inline">Replenish</span></button>
+          <div class="modal fade" id="ReplenishModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+               aria-hidden="true">
+            <div class="modal-dialog">
+
+              dfgdsfg
+            </div>
+          </div>&ndash;&gt;
+
+          <button type="button" style="margin-left: 10px; background-color: #171819; color: #FFDA44;"
+                  class="btn btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#PairModal1">
+                    <span>
+                      <span style="font-size: 18px; font-weight: 600;">{{this.getCurrencyPair() | async}}</span>
+                      <i style="font-size: 18px;" class="bi bi-caret-down-fill"></i>
+                    </span>
+          </button>
+          <app-toolbar [bMobile]="true"></app-toolbar>
+          <div class="modal fade" id="PairModal1" tabindex="-1" aria-labelledby="PaiModalLabel"
+               aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="PaiModalLabel">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Crypto Pair</span>
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-control">
+                    <input id="pairSearch"
+                           type="search"
+                           [(ngModel)]="sSearchPair"
+                           placeholder="Search..."
+                           maxlength="999999999">
+                  </div>
+                </div>
+                <div class="modal-footer"
+                     style="max-height: 400px;
+                              overflow: scroll;
+                               padding-left: 0;
+                                padding-right: 0;">
+                  <div class="pairWrapper">
+                    <button type="button"
+                            *ngFor="let sSymbol of asSymbol | filterMobile: sSearchPair"
+                            (click)="onChoosePair(sSymbol)"
+                            data-bs-dismiss="modal"
+                            class="btn btn-light pairWrapper__item">
+                      {{sSymbol}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        &lt;!&ndash;        <div class="header-symbols-list" style="width: 0px;">&ndash;&gt;
+        &lt;!&ndash;<div class="header-symbols__symbol-wrapper">
+          <div class="header-symbols__symbol">
+            <div class="header-symbols-list__icon"><img alt="" height="28"
+                                                        width="28"
+                                                        src="assets/img/image-alcoa.webp"
+                                                        lazy="loaded"></div>
+            <div class="header-symbols-list__label">
+              <div class="header-symbols-list__name">Alcoa</div>
+              <div class="header-symbols-list__category">Stock</div>
+            </div>
+            <div class="header-symbols-list__close"><span
+              class="bi bi-plus"></span></div>
+          </div>
+        </div>
+        <div class="header-symbols__symbol-wrapper is&#45;&#45;active">
+          <div class="header-symbols__symbol">
+            <div class="header-symbols-list__icon"><img alt="" height="28"
+                                                        width="28"
+                                                        src="assets/img/Adidas-logo.webp"
+                                                        lazy="loaded"></div>
+            <div class="header-symbols-list__label">
+              <div class="header-symbols-list__name">Adidas</div>
+              <div class="header-symbols-list__category">Stock</div>
+            </div>
+            <div class="header-symbols-list__close"><span
+              class="bi bi-plus"></span></div>
+          </div>
+        </div>&ndash;&gt;
+        &lt;!&ndash;        </div>&ndash;&gt;
+        &lt;!&ndash;<button type="button" class="header-symbols-add"><span
+          class="bi bi-plus"></span></button>
+        <div class="header-symbols-navigator d-none d-lg-inline-flex">
+          <button type="button" class="header-symbols-navigator_nav" disabled="disabled"><span
+            class="bi bi-arrow2"></span></button>
+          <button type="button" class="header-symbols-navigator_nav" disabled="disabled"><span
+            class="bi bi-arrow2"></span></button>
+        </div>&ndash;&gt;
+        &lt;!&ndash;<select class="form-select"
+                style="width: fit-content;"
+                [(ngModel)]="selectedSymbol"
+                (ngModelChange)="onCurrencyPairChanged($event)"
+                aria-label="Default select example">
+          <option value="BTCUSDT">BTC/USDT</option>
+          <option value="ETHUSDT">ETH/USDT</option>
+          <option value="LTCUSDT">LTC/USDT</option>
+          <option value="XRPUSDT">XRP/USDT</option>
+          <option value="BCHUSDT">BCH/USDT</option>
+        </select>&ndash;&gt;
+      </div>
+    </div>-->
+<!--  </div>-->
+  <div class="terminal-layout__content">
+    <div class="sidebar">
+      <div class="sidebar-items" style="display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      min-height: 50px;
+      height: 100%;">
+        <div class="d-lg-block" style="display: flex">
+          <div class="sidebar-item"
+               [ngClass]="sActiveMenu === 'chart' ? 'is--active' : ''"
+               (click)="onClickMenu('chart')">
+            <i class="bi bi-grid"></i>
+            <div class="sidebar-item__title">Dashboard</div>
+          </div>
+          <div class="sidebar-item"
+               [ngClass]="sActiveMenu === 'profile' ? 'is--active' : ''"
+               (click)="onClickMenu('profile')">
+            <span class="bi bi-person"></span>
+            <div class="sidebar-item__title">Profile</div>
+          </div>
+          <div class="sidebar-item"
+               [ngClass]="sActiveMenu === 'open' ? 'is--active' : ''"
+               (click)="onClickMenu('open')">
+            <span class="bi bi-sort-down"></span>
+            <div class="sidebar-item__title">Open</div><!----></div>
+          <div class="sidebar-item"
+               [ngClass]="sActiveMenu === 'history' ? 'is--active' : ''"
+               (click)="onClickMenu('history')">
+            <span class="bi bi-file"></span>
+            <div class="sidebar-item__title">History</div>
+          </div>
+        </div>
+        <div class="sidebar-item d-none d-sm-block">
+          <div style=" color: #FD2929" class="sidebar-item__title" (click)="onSignOut()">
+            <span style="color: #FD2929;"
+                  class="bi bi-box-arrow-left"></span>
+            <span style="margin-left: 5px; font-size: 20px;">Exit</span>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-footer d-none d-lg-block"><span
+        class="bi bi-double_left"></span></div>
+      <!----></div>
+    <div class="terminal-trader"> <!--&gt; [ngStyle]="sActiveMenu === 'chart' ? {height: '90%'} : {height: '100%'}"-->
+      <div class="terminal-trader-chart">
+        <div class="chart-wrapper">
+          <div class="chart">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+        <!--<div class="trader-footer">
+          &lt;!&ndash;<div class="trader-footer-buttons d-none d-xxl-flex">
+            <div class="trader-footer-button is&#45;&#45;active">
+              <div class="bi bi-sun"></div>
+            </div>
+            <div class="trader-footer-button">
+              <div class="bi bi-night"></div>
+            </div>
+          </div>&ndash;&gt;
+          <div class="trader-footer-resolutions" *ngIf="sActiveMenu === 'chart'">
+            <div class="trader-footer-resolution"
+                 [ngClass]="selectedTimeframe === '1w' ? 'is&#45;&#45;active' : ''"
+                 (click)="onTimeframeChanged('1w')"> 7 days
+            </div>
+            <div class="trader-footer-resolution"
+                 [ngClass]="selectedTimeframe === '1d' ? 'is&#45;&#45;active' : ''"
+                 (click)="onTimeframeChanged('1d')"> 1 day
+            </div>
+            <div class="trader-footer-resolution"
+                 [ngClass]="selectedTimeframe === '4h' ? 'is&#45;&#45;active' : ''"
+                 (click)="onTimeframeChanged('4h')"> 4 hours
+            </div>
+            <div class="trader-footer-resolution"
+                 [ngClass]="selectedTimeframe === '1h' ? 'is&#45;&#45;active' : ''"
+                 (click)="onTimeframeChanged('1h')"> 1 hour
+            </div>
+            <div class="trader-footer-resolution"
+                 [ngClass]="selectedTimeframe === '15m' ? 'is&#45;&#45;active' : ''"
+                 (click)="onTimeframeChanged('15m')"> 15 minutes
+            </div>
+            <div class="trader-footer-resolution"
+                 [ngClass]="selectedTimeframe === '5m' ? 'is&#45;&#45;active' : ''"
+                 (click)="onTimeframeChanged('5m')"> 5 minutes
+            </div>
+            <div class="trader-footer-resolution"
+                 [ngClass]="selectedTimeframe === '1m' ? 'is&#45;&#45;active' : ''"
+                 (click)="onTimeframeChanged('1m')"> 1 minute
+            </div>
+          </div>
+        </div>-->
+      </div>
+      <div class="terminal-trader-order" *ngIf="sActiveMenu === 'chart'">
+        <div class="terminal-order d-none d-lg-block is--buy">
+          <div class="terminal-order-body">
+            <div class="terminal-order-info">
+              <div class="terminal-order-info__image"><!--<img
+                src="assets/img/Adidas-logo.webp"
+                alt="" height="28" width="28">--></div>
+              <div class="terminal-order-info__ticker"> {{selectedSymbol}}</div>
+              <!--              <div class="terminal-order-info__category"> Stock</div>-->
+            </div>
+            <div class="terminal-order-tabs" style="display: flex; justify-content: space-around">
+              <div class="terminal-order-tab is--green"
+                   style="background-color: #171819; width: fit-content;  padding: 8px 18px; border-radius: 8px;"
+                   [ngClass]="sTradeActionBar === 'buy' ? 'is--active' : ''"
+                   (click)="onChooseTradeActionBar('buy')"><span
+                class="bi bi-graph-up"></span>
+                Buy
+              </div>
+              <div class="terminal-order-tab is--red"
+                   style="background-color: #171819; width: fit-content;  padding: 8px 18px; border-radius: 8px;"
+                   [ngClass]="sTradeActionBar === 'sell' ? 'is--active' : ''"
+                   (click)="onChooseTradeActionBar('sell')"><span
+                class="bi bi-graph-down"></span> Sell
+              </div>
+            </div>
+            <div class="terminal-order-block">
+              <div class="terminal-order-invest">
+                <div style="color: #fff !important;" class="form-group"><label
+                  for="33oexqnkg">Invest:</label>
+                  <div class="amountWrapper">
+                    <div class="amountWrapper__minus"
+                         (click)="nAmountToPrecess ? nAmountToPrecess = nAmountToPrecess - 1 : nAmountToPrecess">-
+                    </div>
+                    <input id="33oexqnkg" type="number"
+                           class="form-group amountWrapper__input"
+                           style="width: 100%; margin: 0; padding: 0;"
+                           [(ngModel)]="nAmountToPrecess">
+                    <div (click)="nAmountToPrecess = nAmountToPrecess + 1" class="amountWrapper__plus">+</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="terminal-order-shoulder">
+              <div style="color: #fff !important;" class="dropdown"><label
+              >Leverage:</label>
+                <div class="dropdown-header">
+                  <div class="terminal-order-shoulder__header">
+                    <select class="form-select"
+                            style="width: 100%; background-color: #171819; color: #fff; border: 0"
+                            [(ngModel)]="nLeverage"
+                            (ngModelChange)="onShoulderChange($event)">
+                      <option value="1">1x</option>
+                      <option value="2">2x</option>
+                      <option value="3">3x</option>
+                      <option value="4">4x</option>
+                      <option value="5">5x</option>
+                      <option value="10">10x</option>
+                      <option value="15">15x</option>
+                      <option value="20">20x</option>
+                      <option value="30">30x</option>
+                    </select>
+                    <span class="bi bi-arrow"></span></div>
+                </div><!----></div>
+            </div>
+            <div class="terminal-order-detail">
+              <div class="terminal-order-detail__price"><span
+                class="terminal-order-detail__label" style="color: #fff;">Price: </span>
+                <span class="app-price is--above app-price--default"><!----> {{getCurrentPrice()}} <span
+                  class="price-currency">USD</span><!----></span></div>
+              <!--<div class="terminal-order-detail__count"><span
+                class="terminal-order-detail__label">Price:</span>
+                <span class="app-price is&#45;&#45;above app-price&#45;&#45;default">&lt;!&ndash;&ndash;&gt;{{(currentPrice$ | async) * 0.98}} <span
+                  class="price-currency">EUR</span>&lt;!&ndash;&ndash;&gt;</span></div>-->
+            </div>
+            <div class="terminal-order-caption" *ngIf="sTradeActionBar === 'buy'">
+              <button type="button" class="btn btn-lg btn-green" (click)="onBuySubmit()">
+                <!--                <span class="app-price app-price&#45;&#45;default"></span>-->
+                <span *ngIf="!isInTradeAction()" class="price-currency"
+                      style="color: #fff;">Buy {{selectedSymbol}}</span>
+                <span *ngIf="isInTradeAction()" class="spinner-border" role="status"></span>
+              </button>
+            </div>
+            <div class="terminal-order-caption" *ngIf="sTradeActionBar === 'sell'">
+              <button type="button" class="btn btn-lg btn-red-secondary" (click)="onSellSubmit()">
+                <span *ngIf="!isInTradeAction()" class="price-currency">Sell {{selectedSymbol}}</span>
+                <span *ngIf="isInTradeAction()" class="spinner-border" role="status"></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="terminal-order-footer">
+            <div class="terminal-order-tabs">
+              <div class="terminal-order-tab" style="color: #fff;">
+                Auto close:
+              </div>
+            </div>
+            <div class="terminal-order-block">
+              <div class="terminal-order-close">
+                <div [ngClass]="!bAvailableTakeProfit ? 'switcher--unchecked' : 'switcher--checked'"
+                     class="switcher switcher--green">
+                  <div></div>
+                  <div class="switcher-input"><input (ngModelChange)="onToggleTakeProfitAvailable($event)"
+                                                     [(ngModel)]="bAvailableTakeProfit" type="checkbox"><span
+                  ></span></div>
+                  <div></div>
+                </div>
+                <div class="terminal-order-close__label">Close at profit:</div>
+                <div
+                  [ngClass]="!bAvailableTakeProfit ? 'input-drop--disabled' : ''"
+                  class="input-drop input-drop--green">
+                  <div class="form-group"
+                       style="background-color: transparent;display: flex;align-items: center; border: 0">
+                    <div class="form-control"
+                         [ngStyle]="bAvailableTakeProfit ? {backgroundColor: '#171819'} : {backgroundColor: 'rgba(247, 249, 252, .5)'}"
+                         style="border: 0">
+                      <input id="nqnjqfrm8"
+                             [(ngModel)]="nTakeProfit"
+                             style="background-color: transparent; border: 0; outline: none; padding: 0;"
+                             type="number"
+                             maxlength="999999999">
+                      <!----></div>
+                    <!----></div>
+                  <!-- <div class="dropdown input-drop__drop dropdown&#45;&#45;light-theme">
+                     &lt;!&ndash;&ndash;&gt;
+                     <div class="dropdown-header"><span
+                       class="bi bi-chat-right-text"></span><span
+                       class="bi bi-arrow"></span></div>&lt;!&ndash;&ndash;&gt;</div>-->
+                </div>
+              </div>
+              <div class="terminal-order-close">
+                <div [ngClass]="!bAvailableStopLoss ? 'switcher--unchecked' : 'switcher--checked'"
+                     class="switcher switcher--red">
+                  <div></div>
+                  <div class="switcher-input"><input (ngModelChange)="onToggleStopLossAvailable($event)"
+                                                     [(ngModel)]="bAvailableStopLoss" type="checkbox"><span
+                  ></span></div>
+                  <div></div>
+                </div>
+                <div class="terminal-order-close__label">Close at a loss:</div>
+                <div
+                  [ngClass]="!bAvailableStopLoss ? 'input-drop--disabled' : ''"
+                  class="input-drop terminal-order-close__input input-drop--red">
+                  <div
+                    class="form-group"
+                    style="background-color: transparent;display: flex;align-items: center; border: 0">
+                    <div class="form-control"
+                         style="border: 0"
+                         [ngStyle]="bAvailableStopLoss ? {backgroundColor: '#171819'} : {backgroundColor: 'rgba(247, 249, 252, .5)'}">
+                      <input id="c5doigckn"
+                             [(ngModel)]="nStopLoss"
+                             style="background-color: transparent; border: 0; outline: none; padding: 0;"
+                             type="number"
+                             maxlength="999999999"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-lg-none">
+          <!--<div class="row" style="margin-bottom: 16px;">
+            <div class="col">
+              <div class="trader-footer">
+                &lt;!&ndash;<div class="trader-footer-buttons d-none d-xxl-flex">
+                  <div class="trader-footer-button is&#45;&#45;active">
+                    <div class="bi bi-sun"></div>
+                  </div>
+                  <div class="trader-footer-button">
+                    <div class="bi bi-night"></div>
+                  </div>
+                </div>&ndash;&gt;
+                <div class="trader-footer-resolutions" *ngIf="sActiveMenu === 'chart'">
+                  <div class="trader-footer-resolution"
+                       [ngClass]="selectedTimeframe === '1w' ? 'is&#45;&#45;active' : ''"
+                       (click)="onTimeframeChanged('1w')"> 7 days
+                  </div>
+                  <div class="trader-footer-resolution"
+                       [ngClass]="selectedTimeframe === '1d' ? 'is&#45;&#45;active' : ''"
+                       (click)="onTimeframeChanged('1d')"> 1 day
+                  </div>
+                  <div class="trader-footer-resolution"
+                       [ngClass]="selectedTimeframe === '4h' ? 'is&#45;&#45;active' : ''"
+                       (click)="onTimeframeChanged('4h')"> 4 hours
+                  </div>
+                  <div class="trader-footer-resolution"
+                       [ngClass]="selectedTimeframe === '1h' ? 'is&#45;&#45;active' : ''"
+                       (click)="onTimeframeChanged('1h')"> 1 hour
+                  </div>
+                  <div class="trader-footer-resolution"
+                       [ngClass]="selectedTimeframe === '15m' ? 'is&#45;&#45;active' : ''"
+                       (click)="onTimeframeChanged('15m')"> 15 minutes
+                  </div>
+                  <div class="trader-footer-resolution"
+                       [ngClass]="selectedTimeframe === '5m' ? 'is&#45;&#45;active' : ''"
+                       (click)="onTimeframeChanged('5m')"> 5 minutes
+                  </div>
+                  <div class="trader-footer-resolution"
+                       [ngClass]="selectedTimeframe === '1m' ? 'is&#45;&#45;active' : ''"
+                       (click)="onTimeframeChanged('1m')"> 1 minute
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>-->
+          <div class="row" style="margin-bottom: 16px;">
+            <div class="col-8">
+              <div class="amountWrapper">
+                <div class="amountWrapper__minus"
+                     (click)="nAmountToPrecess ? nAmountToPrecess = nAmountToPrecess - 1 : nAmountToPrecess">-
+                </div>
+                <input id="33oexqnkg3" type="number"
+                       class="form-group amountWrapper__input"
+                       style="width: 100%; margin: 0; padding: 0;"
+                       [(ngModel)]="nAmountToPrecess">
+                <div (click)="nAmountToPrecess = nAmountToPrecess + 1" class="amountWrapper__plus">+</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="terminal-order-shoulder" style="margin-left: 0; width: 100%;">
+                <div style="color: #fff !important;" class="dropdown">
+                  <div class="dropdown-header">
+                    <div class="terminal-order-shoulder__header">
+                      <select class="form-select"
+                              style="width: 100%; background-color: #171819; color: #fff; border: 0; text-align: center"
+                              [(ngModel)]="nLeverage"
+                              (ngModelChange)="onShoulderChange($event)">
+                        <option value="1">1x</option>
+                        <option value="2">2x</option>
+                        <option value="3">3x</option>
+                        <option value="4">4x</option>
+                        <option value="5">5x</option>
+                        <option value="10">10x</option>
+                        <option value="15">15x</option>
+                        <option value="20">20x</option>
+                        <option value="30">30x</option>
+                      </select>
+                      <span class="bi bi-arrow"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <button type="button"
+                      (click)="onBuySubmit()"
+                      style="background-color: #171819; color: #0ecb81;"
+                      class="btn btn-block btn-sm terminal-trader-order__btn"><span
+                class="bi bi-graph-up"></span>
+                Buy
+              </button>
+            </div>
+            <div class="col-4">
+              <button type="button"
+                      (click)="onSellSubmit()"
+                      style="color: #ed6e72; background-color: #171819;"
+                      class="btn btn-block btn-sm btn-red-secondary terminal-trader-order__btn"><span
+                class="bi bi-graph-down"></span>
+                Sell
+              </button>
+            </div>
+            <div class="col-4">
+              <button type="button"
+                      style="background-color: #171819; color: #FFDA44; padding: 15px; width: 100%;"
+                      class="btn btn-sm"
+                      data-bs-toggle="modal"
+                      data-bs-target="#SlTp">
+                    <span>
+                      <span style="font-size: 14px; font-weight: 600; display: flex; align-items: center">
+                        <span style="width: 14px; height: 14px; color: transparent;"
+                              *ngIf="!nTakeProfit"></span>
+                        <svg *ngIf="nTakeProfit" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                             fill="#0ecb81"
+                             class="bi bi-check-lg" viewBox="0 0 16 16">
+  <path
+    d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+</svg>
+                        TP/SL
+                                                <span *ngIf="!nStopLoss"
+                                                      style="width: 14px; height: 14px; color: transparent;"></span>
+
+                      <svg *ngIf="nStopLoss" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#0ecb81"
+                           class="bi bi-check-lg" viewBox="0 0 16 16">
+  <path
+    d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+</svg>
+                      </span>
+                    </span>
+              </button>
+              <div class="modal fade" id="SlTp" tabindex="-1" aria-labelledby="SlTpLabel"
+                   aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content" style="background-color: #1E1E1E;">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="SlTpLabel">
+                        <i class="bi bi-arrow-left-right"></i>
+                        <span style="color: #FFDA44; font-weight: 800;">TP/SL</span>
+                      </h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="ModalLabel">
+                        Take Profit
+                      </div>
+                      <input class="ModalInput" type="number" [(ngModel)]="nTakeProfit">
+                      <div class="ModalLabel">
+                        Stop Loss
+                      </div>
+                      <input class="ModalInput" type="number" [(ngModel)]="nStopLoss">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button"
+                              data-bs-dismiss="modal"
+                              class="btn btn-sm"
+                              style="background-color: #FFDA44; color: #171819; font-weight: 600;">Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

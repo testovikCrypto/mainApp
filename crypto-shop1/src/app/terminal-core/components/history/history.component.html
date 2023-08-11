@@ -1,0 +1,46 @@
+<div class="historyWrapper">
+  <div class="historyWrapper__Text">History deals</div>
+  <div class="historyWrapper__tableContainer">
+    <table style="width: 100%;" *ngIf="aHistoryList && aHistoryList.length; else noHistory">
+      <thead>
+      <tr>
+        <td>&nbsp;</td>
+        <td>Opening date</td>
+        <td>Pair</td>
+        <td>Amount</td>
+        <td>Price</td>
+        <td>Leverage</td>
+        <td>Result PNL</td>
+        <!--      <td>&nbsp;</td>-->
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let oActiveTrade of aHistoryList | sortByDateTime; let nIndex = index">
+        <td>
+        <span [ngStyle]="oActiveTrade.tradeType === 'buy' ? {color: '#0ECB81'} : {color: '#FD2929'}">
+          {{oActiveTrade.tradeType === 'buy' ? 'Buy' : 'Sell'}}
+        </span>
+        </td>
+        <td>{{getFormattedTime(oActiveTrade.dealOpened)}}</td>
+        <td>{{oActiveTrade.symbol}}</td>
+        <td>{{oActiveTrade.amount}}</td>
+        <td>{{oActiveTrade.price}}</td>
+        <td>{{oActiveTrade.leverage}}</td>
+        <td>
+        <span [ngStyle]="isPositiveResult(oActiveTrade.sDealResultPNL) ? {color: '#0ECB81'} : {color: '#FD2929'}">
+        {{oActiveTrade.sDealResultPNL}}
+          </span>
+        </td>
+        <!--<td>
+          <button (click)="onShareTrade(oActiveTrade)"><i class="bi bi-share-fill"></i> Share</button>
+        </td>-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noHistory>
+    <div class="historyWrapper__noTradesInHistory">No history yet...</div>
+  </ng-template>
+</div>
+

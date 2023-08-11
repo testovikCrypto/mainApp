@@ -1,0 +1,41 @@
+<div class="app-additional">
+  <div class="container fluid-lg">
+    <div class="row">
+      <div class="col col-xl-7">
+        <div class="app-additional-block">
+          <div class="app-additional-title">
+            ADDITIONAL BENEFITS
+          </div>
+          <div class="app-additional-description">
+            MARKET by Crypto Trade
+          </div>
+
+          <div class="keen-slider" #sliderRef>
+            <div *ngFor="let item of data" class="keen-slider__slide">
+              <div class="app-additional-card">
+                <div class="app-additional-card-title">
+                  {{item.title}}
+                </div>
+                <div class="app-additional-card-description">
+                  {{item.description}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="app-additional-pagination">
+            <div *ngFor="let paginationIndex of paginationHelper; let i = index"
+                 [class]="'app-additional-pagination-dot ' + (paginationIndex <= currentSlideIndex ? 'active' : '') "
+                 (click)="slider?.moveToIdx(paginationIndex)">
+              {{'0' + (paginationIndex + 1)}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-xl-5 d-none d-xl-block" style="position: relative;">
+        <picture>
+          <img alt="img1" [src]="image1"/>
+        </picture>
+      </div>
+    </div>
+  </div>
+</div>

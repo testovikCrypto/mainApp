@@ -1,0 +1,54 @@
+.verification {
+  font-size: 28px;
+  color: #FFBD0D;
+  font-weight: 800;
+  padding: 30px;
+}
+
+.accordion-button:before {
+  color: #FFBD0D;
+}
+
+.wrapper {
+  width: 100%;
+  height: fit-content;
+  //display: flex;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: .5px solid #ccc;
+
+    &__field {
+      font-size: 16px;
+      font-weight: 500;
+
+    }
+
+    &__value {
+      font-size: 16px;
+      font-weight: 600;
+
+      &__btn {
+        padding: 8px 16px;
+        background-color: #FFBD0D;
+        border-radius: 8px;
+        color: #171819;
+        cursor: pointer;
+      }
+
+      &__btnSubmit {
+        margin-top: 20px;
+        font-weight: 800;
+        padding: 8px 16px;
+        background-color: #FFBD0D;
+        border-radius: 8px;
+        color: #171819;
+        cursor: pointer;
+      }
+    }
+  }
+}

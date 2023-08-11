@@ -1,0 +1,202 @@
+<div class="verification">Verification</div>
+<div class="accordion" id="accordionExample" style="padding: 20px;">
+  <div class="accordion-item" style="border: 0">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button"
+              style="background-color: #1E1E1E; color: #FFBD0D;"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="true" aria-controls="collapseOne">
+        Using passport
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show"
+         style="background-color: #171819; color: #FFBD0D;"
+         aria-labelledby="headingOne"
+         data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+
+        <div class="wrapper">
+          <div class="wrapper__item">
+            <div class="wrapper__item__field">
+              Passport (First page)
+            </div>
+            <div class="wrapper__item__value" *ngIf="!fileInput_1">
+              <label class="wrapper__item__value__btn" for="fileInput_1"><span class="bi bi-plus-lg"></span></label>
+              <input hidden
+                     id="fileInput_1"
+                     type="file"
+                     (change)="onChangeField($event, 'fileInput_1')"/>
+            </div>
+            <div class="wrapper__item__value" *ngIf="fileInput_1">
+              <div class="wrapper__item__value__btn"><i class="bi bi-check-lg"></i></div>
+            </div>
+          </div>
+
+          <div class="wrapper__item">
+            <div class="wrapper__item__field">
+              Passport (Second page)
+            </div>
+            <div class="wrapper__item__value" *ngIf="!fileInput_2">
+              <label class="wrapper__item__value__btn" for="fileInput_2"><span class="bi bi-plus-lg"></span></label>
+              <input hidden
+                     id="fileInput_2"
+                     type="file"
+                     (change)="onChangeField($event, 'fileInput_2')"/>
+            </div>
+            <div class="wrapper__item__value" *ngIf="fileInput_2">
+              <div class="wrapper__item__value__btn"><i class="bi bi-check-lg"></i></div>
+            </div>
+          </div>
+
+          <div class="wrapper__item">
+            <div class="wrapper__item__field">
+              Passport (Residence permit)
+            </div>
+            <div class="wrapper__item__value" *ngIf="!fileInput_3">
+              <label class="wrapper__item__value__btn" for="fileInput_3"><span class="bi bi-plus-lg"></span></label>
+              <input hidden
+                     id="fileInput_3"
+                     type="file"
+                     (change)="onChangeField($event, 'fileInput_3')"/>
+            </div>
+            <div class="wrapper__item__value" *ngIf="fileInput_3">
+              <div class="wrapper__item__value__btn"><i class="bi bi-check-lg"></i></div>
+            </div>
+          </div>
+
+          <div class="wrapper__item">
+            <div class="wrapper__item__field">
+              Selfie
+            </div>
+            <div class="wrapper__item__value" *ngIf="!fileInput_4">
+              <label class="wrapper__item__value__btn" for="fileInput_4"><span class="bi bi-plus-lg"></span></label>
+              <input hidden
+                     id="fileInput_4"
+                     type="file"
+                     (change)="onChangeField($event, 'fileInput_4')"/>
+            </div>
+            <div class="wrapper__item__value" *ngIf="fileInput_4">
+              <div class="wrapper__item__value__btn"><i class="bi bi-check-lg"></i></div>
+            </div>
+          </div>
+
+          <div class="wrapper__item">
+            <div class="wrapper__item__field">
+              Selfie (Holding passport)
+            </div>
+            <div class="wrapper__item__value" *ngIf="!fileInput_5">
+              <label class="wrapper__item__value__btn" for="fileInput_5"><span class="bi bi-plus-lg"></span></label>
+              <input hidden
+                     id="fileInput_5"
+                     type="file"
+                     (change)="onChangeField($event, 'fileInput_5')"/>
+            </div>
+            <div class="wrapper__item__value" *ngIf="fileInput_5">
+              <div class="wrapper__item__value__btn"><i class="bi bi-check-lg"></i></div>
+            </div>
+          </div>
+
+        </div>
+        <div class="wrapper__item__value__btnSubmit"
+             *ngIf="!bIsInSubmittingVerificationProcess"
+             (click)="onSubmitVerification_ByPassport()"
+             [ngStyle]="isAllFieldsFilledPassport() ? {} : {opacity: 0.3}"
+             style="width: fit-content;">Submit</div>
+        <div class="wrapper__item__value__btnSubmit"
+             *ngIf="bIsInSubmittingVerificationProcess"
+             style="width: fit-content;">In process...</div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item" style="border: 0">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed"
+              style="background-color: #1E1E1E; color: #FFBD0D;"
+              type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+              aria-expanded="false" aria-controls="collapseTwo">
+        Using driver license
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+         style="background-color: #171819; color: #FFBD0D;"
+         data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+
+        <div class="wrapper">
+          <div class="wrapper__item">
+            <div class="wrapper__item__field">
+              Driver license (Front side)
+            </div>
+            <div class="wrapper__item__value" *ngIf="!fileInput_6">
+              <label class="wrapper__item__value__btn" for="fileInput_6"><span class="bi bi-plus-lg"></span></label>
+              <input hidden
+                     id="fileInput_6"
+                     type="file"
+                     (change)="onChangeField($event, 'fileInput_6')"/>
+            </div>
+            <div class="wrapper__item__value" *ngIf="fileInput_6">
+              <div class="wrapper__item__value__btn"><i class="bi bi-check-lg"></i></div>
+            </div>
+          </div>
+
+          <div class="wrapper__item">
+            <div class="wrapper__item__field">
+              Driver license (Back side)
+            </div>
+            <div class="wrapper__item__value" *ngIf="!fileInput_7">
+              <label class="wrapper__item__value__btn" for="fileInput_7"><span class="bi bi-plus-lg"></span></label>
+              <input hidden
+                     id="fileInput_7"
+                     type="file"
+                     (change)="onChangeField($event, 'fileInput_7')"/>
+            </div>
+            <div class="wrapper__item__value" *ngIf="fileInput_7">
+              <div class="wrapper__item__value__btn"><i class="bi bi-check-lg"></i></div>
+            </div>
+          </div>
+
+          <div class="wrapper__item">
+            <div class="wrapper__item__field">
+              Selfie
+            </div>
+            <div class="wrapper__item__value" *ngIf="!fileInput_8">
+              <label class="wrapper__item__value__btn" for="fileInput_8"><span class="bi bi-plus-lg"></span></label>
+              <input hidden
+                     id="fileInput_8"
+                     type="file"
+                     (change)="onChangeField($event, 'fileInput_8')"/>
+            </div>
+            <div class="wrapper__item__value" *ngIf="fileInput_8">
+              <div class="wrapper__item__value__btn"><i class="bi bi-check-lg"></i></div>
+            </div>
+          </div>
+
+          <div class="wrapper__item">
+            <div class="wrapper__item__field">
+              Selfie (Holding driving license)
+            </div>
+            <div class="wrapper__item__value" *ngIf="!fileInput_9">
+              <label class="wrapper__item__value__btn" for="fileInput_9"><span class="bi bi-plus-lg"></span></label>
+              <input hidden
+                     id="fileInput_9"
+                     type="file"
+                     (change)="onChangeField($event, 'fileInput_9')"/>
+            </div>
+            <div class="wrapper__item__value" *ngIf="fileInput_9">
+              <div class="wrapper__item__value__btn"><i class="bi bi-check-lg"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper__item__value__btnSubmit"
+             *ngIf="!bIsInSubmittingVerificationProcess"
+             [ngStyle]="isAllFieldsFilledDrivingLicense() ? {} : {opacity: 0.3}"
+             style="width: fit-content;" (click)="onSubmitVerification_ByDrivingLicense()">Submit</div>
+        <div class="wrapper__item__value__btnSubmit"
+             *ngIf="bIsInSubmittingVerificationProcess"
+             style="width: fit-content;">In process...</div>
+      </div>
+    </div>
+  </div>
+</div>

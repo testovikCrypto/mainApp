@@ -1,0 +1,307 @@
+<div class="header" *ngIf="oUserInfo">
+  <div class="container-fluid">
+    <div class="row d-flex flex-nowrap justify-content-between">
+      <div class="col col-auto">
+        <a aria-current="page"
+                                   class="header-logo router-link-exact-active router-link-active"><img
+        width="200" height="60" src="assets/img/logoNew.png" alt="logo"
+        title="logo"
+        class="d-none d-sm-block"><img width="130" height="40"
+                                       src="assets/img/logoNew.png"
+                                       alt="logo" title="logo" class="d-sm-none"></a>
+      </div>
+      <div class="col-auto d-flex" style="align-items: center">
+        <div class="col-auto">
+          <div class="dropdown" *ngIf="!oUserInfo.bDemoAccount">
+            <button class="header-wallet" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+            <span style="margin-right: 6px;">
+              <img style="object-fit: fill;width: 20px;height: 20px;" src="assets/img/wallet.png" alt="walletIcon">
+            </span>
+              <span style="display: flex; flex-direction: column">
+              <span style="color: #8E96B0; font-size: 16px; text-align: left"
+                    class="app-price header-price app-price--default">{{oUserInfo.sBalance}}$</span>
+              <span style="color: #FFBD0D; font-size: 12px;">Real account</span>
+            </span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" style="cursor: pointer" (click)="onUseDemoAccount()">Switch to demo
+                account</a>
+              </li>
+            </ul>
+          </div>
+          <div class="dropdown" *ngIf="oUserInfo.bDemoAccount">
+            <button class="header-wallet" type="button" id="dropdownMenuButton2"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+            <span style="margin-right: 6px;">
+              <img style="object-fit: fill;width: 20px;height: 20px;" src="assets/img/wallet.png" alt="walletIcon">
+            </span>
+              <span style="display: flex; flex-direction: column">
+              <span style="color: #8E96B0; font-size: 16px; text-align: left"
+                    class="app-price header-price app-price--default">{{oUserInfo.sBalance_Demo}}$</span>
+              <span style="color: #FFBD0D; font-size: 12px;">Demo account</span>
+            </span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+              <li><a class="dropdown-item" style="cursor: pointer" (click)="onUseRealAccount()">Switch to real
+                account</a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" style="cursor: pointer" (click)="onAddDemoBalance()">Set demo account balance
+                to $10000</a></li>
+            </ul>
+          </div>
+        </div>
+        <div *ngIf="!oUserInfo.bDemoAccount" class="col-auto">
+          <button type="button"
+                  style="background-color: #FFBD0D; color: #1E1E1E;"
+                  class="btn btn-sm d-none d-sm-inline" data-bs-toggle="modal"
+                  data-bs-target="#ReplenishModal"><span
+            class="bi bi-database-down"></span>
+            <span>Replenish</span>
+          </button>
+          <button type="button"
+                  style="background-color: #FFBD0D; color: #1E1E1E; width: 30%;"
+                  class="btn btn-sm d-md-none d-lg-none" data-bs-toggle="modal"
+                  data-bs-target="#ReplenishModal"><span
+            class="bi bi-database-down"></span></button>
+          <div class="modal fade" id="ReplenishModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+               aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content" style="background-color: #1E1E1E;">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel"><span
+                    class="bi bi-database-down"></span>
+                    <span style="color: #FFBD0D; font-weight: 800;">Replenish</span>
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">$</span>
+                    <input type="number" [(ngModel)]="nAmountToReplenish"
+                           class="form-control"
+                           [disabled]="bReplenishAmountSubmitted"
+                           style="padding: 8px; background-color: transparent; border: 1px solid #fff; color: #fff;"
+                           aria-describedby="basic-addon1 basic-addon2">
+                    <span (click)="onSubmitReplenishAmount()"
+                          [ngStyle]="nAmountToReplenish >= 15 && !bReplenishAmountSubmitted ?
+                         {backgroundColor: '#FFBD0D', color: '#171819', cursor: 'pointer'} : {cursor: 'not-allowed'}"
+                          class="input-group-text" id="basic-addon2">Submit</span>
+                  </div>
+                  <div *ngIf="!bReplenishAmountSubmitted" style="font-size: 14px; color: #fff;">Minimal deposit starts
+                    from $15
+                  </div>
+
+                  <ul class="nav nav-tabs" *ngIf="bReplenishAmountSubmitted">
+                    <li style="cursor: pointer" class="nav-item"
+                        *ngFor="let oWallet of aoGatewayReplenishWallets"
+                        (click)="onChooseReplenishMethod(oWallet.sNetwork)">
+                      <div [ngClass]="sReplenishMethod === oWallet.sNetwork ? 'active' : ''"
+                           class="nav-link">{{oWallet.sCurrency}} ({{oWallet.sNetwork}})
+                      </div>
+                    </li>
+                   <!-- <li style="cursor: pointer" class="nav-item" (click)="onChooseReplenishMethod('ETH')">
+                      <a [ngClass]="sReplenishMethod === 'ETH' ? 'active' : ''"
+                         class="nav-link">ETH</a>
+                    </li>
+                    <li style="cursor: pointer" class="nav-item" (click)="onChooseReplenishMethod('USDT')">
+                      <a [ngClass]="sReplenishMethod === 'USDT' ? 'active' : ''"
+                         class="nav-link">USDT</a>
+                    </li>-->
+                  </ul>
+                  <div class="paymentWrapper" *ngIf="bReplenishAmountSubmitted">
+                    <!--<div *ngIf="sReplenishMethod === 'BTC'">
+                      <select class="form-select" [(ngModel)]="sChosenWallet">
+                        <option [value]="oNetwork"
+                                *ngFor="let oNetwork of oActualReplenishWallets['BTC'] | keyvalue">
+                          {{oNetwork.key}}
+                        </option>
+                      </select>
+                      <div class="paymentWrapper__wallet"
+                           style="font-size: 16px; font-weight: 600; margin: 15px 0; color: #fff;"
+                           *ngIf="sChosenWallet">{{sChosenWallet}}</div>
+                    </div>
+                    <div *ngIf="sReplenishMethod === 'ETH'">
+                      <select class="form-select" [(ngModel)]="sChosenWallet">
+                        <option [value]="oNetwork.value"
+                                *ngFor="let oNetwork of oActualReplenishWallets['ETH'] | keyvalue">
+                          {{oNetwork.key}}
+                        </option>
+                      </select>
+                      <div class="paymentWrapper__wallet"
+                           style="font-size: 16px; font-weight: 600; margin: 15px 0; color: #fff;"
+                           *ngIf="sChosenWallet">{{sChosenWallet}}</div>
+                    </div>
+                    <div *ngIf="sReplenishMethod === 'USDT'">
+                      <select class="form-select" [(ngModel)]="sChosenWallet">
+                        <option [value]="oNetwork.value"
+                                *ngFor="let oNetwork of oActualReplenishWallets['USDT'] | keyvalue">
+                          {{oNetwork.key}}
+                        </option>
+                      </select>
+                      <div class="paymentWrapper__wallet"
+                           style="font-size: 16px; font-weight: 600; margin: 15px 0; color: #fff;"
+                           *ngIf="sChosenWallet">{{sChosenWallet}}</div>
+                    </div>-->
+                    <div class="paymentWrapper__wallet"
+                         style="font-size: 16px; font-weight: 600; margin: 15px 0; color: #fff;"
+                         *ngIf="sChosenWallet">{{sChosenWallet}}</div>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-striped progress-bar-animated"
+                           role="progressbar"
+                           aria-valuemin="0"
+                           aria-valuemax="60"
+                           [ngStyle]="{width: getCurrentTimerValue()}">
+                        {{getCurrentTextTimerValue()}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal">Cancel
+                  </button>
+                  <button *ngIf="bReplenishAmountSubmitted"
+                          (click)="onConfirmReplenishTransaction()"
+                          data-bs-toggle="modal"
+                          data-bs-target="#ReplenishModal"
+                          type="button"
+                          style="background-color: #FFDA44; color: #171819; font-weight: 600;"
+                          class="btn">Confirm payment
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button"
+                  style="margin-left: 10px; border: 1px solid #FFBD0D; background-color: transparent; color: #FFBD0D;"
+                  class="btn btn-sm d-none d-sm-inline" data-bs-toggle="modal"
+                  data-bs-target="#WithdrawModal"><span
+            class="bi bi-database-up"></span><span
+            class="d-none d-md-inline">Withdraw</span></button>
+          <button type="button"
+                  style="margin-left: 10px; border: 1px solid #FFBD0D; background-color: transparent; color: #FFBD0D; width: 30%;"
+                  class="btn btn-sm d-md-none d-lg-none" data-bs-toggle="modal"
+                  data-bs-target="#WithdrawModal"><span
+            class="bi bi-database-up"></span><span
+            class="d-none d-md-inline">Withdraw</span></button>
+          <div class="modal fade" id="WithdrawModal" tabindex="-1" aria-labelledby="WithdrawModalLabel"
+               aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content" style="background-color: #1E1E1E;">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="WithdrawModalLabel"><span
+                    class="bi bi-database-down"></span><span
+                    style="color: #FFBD0D; font-weight: 800;">Withdraw</span></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="Withdraw-basic-addon1">$</span>
+                    <input type="number" [(ngModel)]="nAmountToWithdraw"
+                           class="form-control"
+                           [disabled]="bWithdrawAmountSubmitted"
+                           style="padding: 8px;"
+                           aria-describedby="Withdraw-basic-addon1 Withdraw-basic-addon2">
+                    <span (click)="onSubmitWithdrawAmount()"
+                          [ngStyle]="isAvailableAmountToWithdraw()
+                         && !bWithdrawAmountSubmitted
+                          ? {backgroundColor: '#FFBD0D', color: '#171819', cursor: 'pointer'} : {cursor: 'not-allowed'}"
+                          class="input-group-text" id="Withdraw-basic-addon2">Submit</span>
+                  </div>
+                  <div *ngIf="!bReplenishAmountSubmitted" style="font-size: 14px; color: #9f9f9f;">Minimal withdraw
+                    starts
+                    from $15
+                  </div>
+
+                  <ul class="nav nav-tabs" *ngIf="bWithdrawAmountSubmitted">
+                    <li style="cursor: pointer" class="nav-item" (click)="onChooseWithdrawMethod('BTC')">
+                      <div [ngClass]="sWithdrawMethod === 'BTC' ? 'active' : ''"
+                           class="nav-link">BTC
+                      </div>
+                    </li>
+                    <li style="cursor: pointer" class="nav-item" (click)="onChooseWithdrawMethod('ETH')">
+                      <a [ngClass]="sWithdrawMethod === 'ETH' ? 'active' : ''"
+                         class="nav-link">ETH</a>
+                    </li>
+                    <li style="cursor: pointer" class="nav-item" (click)="onChooseWithdrawMethod('USDT')">
+                      <a [ngClass]="sWithdrawMethod === 'USDT' ? 'active' : ''"
+                         class="nav-link">USDT</a>
+                    </li>
+                  </ul>
+                  <div class="paymentWrapper" *ngIf="bWithdrawAmountSubmitted">
+                    <div *ngIf="sWithdrawMethod === 'BTC'">
+                      <select class="form-select" [(ngModel)]="sChosenWallet_Withdraw">
+                        <option [value]="oNetwork.value"
+                                *ngFor="let oNetwork of oActualReplenishWallets['BTC'] | keyvalue">
+                          {{oNetwork.key}}
+                        </option>
+                      </select>
+                      <input [disabled]="!sChosenWallet_Withdraw"
+                             placeholder="0x9a4de6f82ef3ec03e71ff9d00b2bb49f6dd7e9b2"
+                             [(ngModel)]="sWalletNumber"
+                             style="font-size: 16px; font-weight: 400; margin: 15px 0; padding: 8px; width: 100%;"
+                             type="text">
+                    </div>
+                    <div *ngIf="sWithdrawMethod === 'ETH'">
+                      <select class="form-select" [(ngModel)]="sChosenWallet_Withdraw">
+                        <option [value]="oNetwork.value"
+                                *ngFor="let oNetwork of oActualReplenishWallets['ETH'] | keyvalue">
+                          {{oNetwork.key}}
+                        </option>
+                      </select>
+                      <input [disabled]="!sChosenWallet_Withdraw"
+                             [(ngModel)]="sWalletNumber"
+                             placeholder="0x9a4de6f82ef3ec03e71ff9d00b2bb49f6dd7e9b2"
+                             style="font-size: 16px; font-weight: 400; margin: 15px 0; padding: 8px; width: 100%;"
+                             type="text">
+                    </div>
+                    <div *ngIf="sWithdrawMethod === 'USDT'">
+                      <select class="form-select" [(ngModel)]="sChosenWallet_Withdraw">
+                        <option [value]="oNetwork.value"
+                                *ngFor="let oNetwork of oActualReplenishWallets['USDT'] | keyvalue">
+                          {{oNetwork.key}}
+                        </option>
+                      </select>
+                      <input [disabled]="!sChosenWallet_Withdraw"
+                             [(ngModel)]="sWalletNumber"
+                             placeholder="0x9a4de6f82ef3ec03e71ff9d00b2bb49f6dd7e9b2"
+                             style="font-size: 16px; font-weight: 400; margin: 15px 0; padding: 8px; width: 100%;"
+                             type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal">Cancel
+                  </button>
+                  <button *ngIf="bWithdrawAmountSubmitted"
+                          (click)="onConfirmWithdrawTransaction()"
+                          data-bs-toggle="modal"
+                          data-bs-target="#WithdrawModal"
+                          type="button"
+                          class="btn btn-primary">Confirm withdraw
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-auto d-none d-sm-block">
+          <div style="display: flex; justify-content: center; align-items: center">
+            <div>
+              <img [src]="getUserPhoto()" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover" alt="userPic">
+            </div>
+            <div style="color: #8E96B0; margin-left: 10px;">{{oUserInfo.sName}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

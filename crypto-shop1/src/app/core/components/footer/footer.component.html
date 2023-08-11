@@ -1,0 +1,27 @@
+<div class="app-footer">
+  <div class="container">
+    <div class="d-flex flex-column align-items-center justify-content-md-between flex-xl-row flex-justify-space-between app-footer-separator ">
+    <div class="mr-auto">
+      <app-logo [secondary]="false"/>
+    </div>
+
+<!--    {<NavBar  class={`flex-column align-items-center flex-md-row py-4 m-auto ${styles['']}`} navItems={linksFooter}></NavBar>}-->
+    <app-nav-bar-footer [navItems]="data"></app-nav-bar-footer>
+
+    <div class="py-3 ml-auto">
+      <a (click)="onClickStartTrading()"
+         style="color: #000; font-weight: 600; background-color: #FFDA44;" class="btn btn-lg">Start trading</a>
+    </div>
+    </div>
+    <div class="row pb-4">
+      <p class="app-footer-text">
+        MARKET by Crypto Trade is registered at: 30 St Mary Axe, London UK. The company is carried out in accordance with the requirements of the Cyprus Securities and Exchange Commission (license number: 34356), the Financial Sector Conduct Authority (FSCA) and the Commission for financial services of the Republic of Mauritius (investment dealer license number: T21628345).
+      </p>
+    </div>
+    <div class="row">
+      <p class="app-footer-text">
+        Copyright ©2011 - 2023 MARKET by Crypto Trade. All rights reserved.
+      </p>
+    </div>
+  </div>
+</div>

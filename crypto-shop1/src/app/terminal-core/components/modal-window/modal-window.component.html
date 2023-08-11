@@ -1,0 +1,28 @@
+<!--<div class="modal">
+  <div class="modal-content">
+    <h2>{{ type.toUpperCase() }}</h2>
+    <p>{{ message }}</p>
+  </div>
+</div>-->
+
+<div class="modal" tabindex="-1" (click)="close()">
+  <div class="modal-dialog" (click)="$event.stopPropagation()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" [style]="{'color': getTitleColor()}">{{type.toUpperCase()}}</h5>
+        <button type="button" class="btn-close" (click)="close()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{message}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+                style="background-color: transparent; border: 1px solid #FFBD0D; color: #FFBD0D"
+                class="btn"
+                (click)="close()">Close</button>
+<!--        <button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+

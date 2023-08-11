@@ -1,0 +1,30 @@
+<div class="app-stats">
+  <div class="container">
+    <div class="row flex-xl-nowrap ">
+      <div  class="col-sm-6 col-lg-4 col-xl-auto flex-fill" *ngFor="let item of data">
+        <div class="app-stats-card" >
+          <div class="item-top">
+            {{item.name}}
+          </div>
+          <div class="item-bottom">
+            {{item.description}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-stats-body">
+      <div class="title"><span>More than 110,000 clients trust us</span> - the
+        highest value for our company
+      </div>
+      <div class="description"> Our trading platform was created for the widest
+        possible audience. Experienced traders and investors have been convinced for all the time that we do not
+        draw quotes and they converge with the supplier as much as possible. And newcomers who used our platform
+        learned how to work with modern financial instruments and quickly began to develop their financial skills
+        and earn in the first days!
+      </div>
+      <div class="caption"><a  (click)="onClickStartTrading()"
+                               style="color: #000; font-weight: 600; background-color: #FFDA44;" class="btn"> Start trading </a>
+      </div>
+    </div>
+  </div>
+</div>

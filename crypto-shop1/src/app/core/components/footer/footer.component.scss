@@ -1,0 +1,33 @@
+.app-footer {
+  margin: 0;
+  margin-bottom: 0;
+  padding-bottom: 50px;
+  background: #1E1E1E;
+}
+
+.app-footer-separator {
+  padding: 25px 0;
+  border-bottom: 1px solid #2d3440;
+}
+
+.app-footer-text {
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  color: #707a8a;
+  padding-top: 80px;
+  max-width: 750px;
+  width: 100%;
+  margin: 0 auto;
+
+  @media  screen and (max-width: 767.98px)  {
+    font-size: 12px;
+    padding-top: 40px;
+  }
+}
+
+.navigator {
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+}
